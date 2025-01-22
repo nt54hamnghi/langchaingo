@@ -438,7 +438,7 @@ func parseStreamingChatResponse(ctx context.Context, r *http.Response, payload *
 		defer close(responseChan)
 		for scanner.Scan() {
 			line := scanner.Text()
-			if line == "" {
+			if line == ""  || !strings.HasPrefix(line, "data:") {
 				continue
 			}
 
